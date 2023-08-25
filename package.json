@@ -1,0 +1,25 @@
+{
+  "name": "webx",
+  "displayName": "WebX",
+  "description": "WebX language support and syntax highlighting",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.81.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "webx",
+      "aliases": ["WebX", "webx"],
+      "extensions": [".webx",".wx"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "webx",
+      "scopeName": "source.webx",
+      "path": "./syntaxes/webx.tmLanguage.json"
+    }]
+  }
+}
