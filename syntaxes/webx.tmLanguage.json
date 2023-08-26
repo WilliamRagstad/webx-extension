@@ -2,18 +2,34 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "WebX",
 	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
+		{ "include": "#comments" },
+		{ "include": "#strings" },
+		{ "include": "#keywords" },
+		{ "include": "#operators" },
+		{ "include": "#separators" },
+		{ "include": "#route-methods" },
+		{ "include": "#types" },
+		{ "include": "#formats" },
+		{ "include": "#variables" },
+		{ "include": "#jsx" },
+		{ "include": "#route-path-params" },
+		{ "include": "#route-paths" }
 	],
 	"repository": {
+		"comments": {
+			"patterns": [{
+				"name": "comment.line.double-slash.webx",
+				"match": "//.*$"
+			}, {
+				"name": "comment.block.webx",
+				"begin": "/\\*",
+				"end": "\\*/"
+			}]
+		},
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.webx",
-				"match": "\\b(if|while|for|return)\\b"
+				"match": "\\b(model|handler|location)\\b"
 			}]
 		},
 		"strings": {
@@ -26,6 +42,62 @@
 					"match": "\\\\."
 				}
 			]
+		},
+		"route-methods":{
+			"patterns": [{
+				"name": "entity.name.method.webx",
+				"match": "\\b(get|post|put|delete|patch|options|head)\\b"
+			}]
+		},
+		"route-paths":{
+			"patterns": [{
+				"name": "string.interpolated.webx",
+				"match": "\\/[^\\s]*"
+			}]
+		},
+		"route-path-params":{
+			"patterns": [{
+				"name": "constant.language.webx",
+				"begin": "\\(",
+				"end": "\\)"
+			}]
+		},
+		"variables": {
+			"patterns": [{
+				"name": "variable.name.webx",
+				"match": "\\[a-z]+[a-zA-Z0-9]*"
+			}]
+		},
+		"types":{
+			"patterns": [{
+				"name": "support.type.webx",
+				"match": "\\[A-Z]+[a-zA-Z0-9]*"
+			}]
+		},
+		"formats":{
+			"patterns": [{
+				"name": "support.function.webx",
+				"match": "\\b(json|xml|html|text|csv|yaml|md|pdf|png|jpg|jpeg|gif|svg|bmp|tiff|mp3|mp4|wav|ogg|flac|avi|mov|wmv|mpeg|webm|zip|tar|gz|7z|rar|doc|docx|xls|xlsx|ppt|pptx|odt|ods|odp|pages|numbers|key)\\b"
+			}]
+		},
+		"jsx":{
+			"patterns": [{
+				"name": "markup",
+				"begin": "<",
+				"end": ">"
+			}]
+		},
+		"operators": {
+			"patterns": [{
+				"name": "keyword.operator.webx",
+				"match": "\\b(-->|->|=>|\\+|\\-|\\*|\\/|\\%|\\=|\\!|\\<|\\>|\\&|\\|)\\b"
+			}]
+		},
+		"separators":{
+			"patterns": [{
+				"name": "punctuation.separator.webx",
+				"match": "\\b(\\.|\\,|\\;|\\:)\\b"
+			}]
 		}
 	},
 	"scopeName": "source.webx"
