@@ -1,0 +1,83 @@
+{
+    "global": {
+        "prefix": "global",
+        "body": [
+            "global {",
+            "\t$1",
+            "}"
+        ],
+        "description": "Global"
+    },
+    "model": {
+        "prefix": "model",
+        "body": [
+            "model $1 {",
+            "\t$2",
+            "}"
+        ],
+        "description": "Model"
+    },
+    "handler": {
+        "prefix": "handler",
+        "body": [
+            "handler $1($2) -> $3 {",
+            "\t$4",
+            "}"
+        ],
+        "description": "Handler"
+    },
+    "location": {
+        "prefix": "location",
+        "body": [
+            "location $1 {",
+            "\t$2",
+            "}"
+        ],
+        "description": "Location"
+    },
+    "get": {
+        "prefix": "get",
+        "body": [ "get /$1 $2" ],
+        "description": "Get endpoint"
+    },
+    "post": {
+        "prefix": "post",
+        "body": [ "post /$1 $2 $3" ],
+        "description": "Post endpoint"
+    },
+    "put": {
+        "prefix": "put",
+        "body": [ "put /$1 $2 $3" ],
+        "description": "Put endpoint"
+    },
+    "delete": {
+        "prefix": "delete",
+        "body": [ "delete /$1 $2" ],
+        "description": "Delete endpoint"
+    },
+    "patch": {
+        "prefix": "patch",
+        "body": [ "patch /$1 $2 $3" ],
+        "description": "Patch endpoint"
+    },
+    "options": {
+        "prefix": "options",
+        "body": [ "options /$1 $2" ],
+        "description": "Options endpoint"
+    },
+    "head": {
+        "prefix": "head",
+        "body": [ "head /$1 $2" ],
+        "description": "Head endpoint"
+    },
+    "trace": {
+        "prefix": "trace",
+        "body": [ "trace /$1 $2" ],
+        "description": "Trace endpoint"
+    },
+    "connect": {
+        "prefix": "connect",
+        "body": [ "connect /$1 $2" ],
+        "description": "Connect endpoint"
+    }
+}

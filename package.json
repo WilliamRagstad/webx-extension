@@ -7,7 +7,8 @@
     "vscode": "^1.81.0"
   },
   "categories": [
-    "Programming Languages"
+    "Programming Languages",
+    "Snippets"
   ],
   "contributes": {
     "languages": [{
@@ -20,6 +21,12 @@
       "language": "webx",
       "scopeName": "source.webx",
       "path": "./syntaxes/webx.tmLanguage.json"
-    }]
+    }],
+    "snippets": [
+      {
+        "language": "webx",
+        "path": "./snippets/webx.json"
+      }
+    ]
   }
 }
