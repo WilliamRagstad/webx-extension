@@ -3,17 +3,12 @@
 	"name": "WebX",
 	"patterns": [
 		{ "include": "#comments" },
-		{ "include": "#strings" },
+		{ "include": "#routes" },
 		{ "include": "#keywords" },
-		{ "include": "#operators" },
-		{ "include": "#separators" },
-		{ "include": "#route-methods" },
 		{ "include": "#types" },
-		{ "include": "#formats" },
 		{ "include": "#variables" },
-		{ "include": "#jsx" },
-		{ "include": "#route-path-params" },
-		{ "include": "#route-paths" }
+		{ "include": "#operators" },
+		{ "include": "#separators" }
 	],
 	"repository": {
 		"comments": {
@@ -26,78 +21,107 @@
 				"end": "\\*/"
 			}]
 		},
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.webx",
-				"match": "\\b(model|handler|location)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.webx",
-			"begin": "\"",
-			"end": "\"",
+
+		"request-body-format":{
+			"name": "keyword.other.webx",
+			"begin": "\\b([a-z]+[a-zA-Z0-9]*)\\(",
+			"end": "\\)",
 			"patterns": [
-				{
-					"name": "constant.character.escape.webx",
-					"match": "\\\\."
-				}
+				{ "include": "#parameters" },
+				{ "include": "#separators" },
+				{ "include": "#types" }
 			]
 		},
-		"route-methods":{
-			"patterns": [{
-				"name": "entity.name.method.webx",
-				"match": "\\b(get|post|put|delete|patch|options|head)\\b"
-			}]
+		"route-path-params":{
+			"name": "keyword.other.webx",
+			"begin": "\\(",
+			"end": "\\)",
+			"patterns": [
+				{ "include": "#parameters" },
+				{ "include": "#separators" },
+				{ "include": "#types" }
+			]
+		},
+		"route-path-url": {
+			"name": "string.interpolated.webx",
+			"match": "((\\w+)?\\/?(\\w+|\\/)(\\/\\w+)*\\/?)"
 		},
 		"route-paths":{
-			"patterns": [{
-				"name": "string.interpolated.webx",
-				"match": "\\/[^\\s]*"
-			}]
+			"name": "string.interpolated.webx",
+			"patterns": [
+				{ "include": "#route-path-params" },
+				{ "include": "#route-path-url" }
+			]
 		},
-		"route-path-params":{
-			"patterns": [{
-				"name": "constant.language.webx",
-				"begin": "\\(",
-				"end": "\\)"
-			}]
+		"routes": {
+			"name": "entity.name.function.webx",
+			"begin": "\\b(get|post|put|delete|patch|options|head|GET|POST|PUT|DELETE|PATCH|OPTIONS|HEAD)\\b",
+			"end": "(?=(\\-\\>|\\{|\\<))",
+			"patterns": [
+				{ "include": "#request-body-format" },
+				{ "include": "#route-paths" }
+			]
+		},
+
+		"stmt-location": {
+			"name": "keyword.control.webx",
+			"begin": "\\b(location)\\b",
+			"end": "(?=\\{)",
+			"patterns": [
+				{ "include": "#route-paths" }
+			]
+		},
+		"stmt-global":{
+			"name": "keyword.control.webx",
+			"match": "\\b(global)\\b"
+		},
+		"stmt-model":{
+			"name": "keyword.control.webx",
+			"begin": "\\b(model)\\b",
+			"end": "(?=\\})",
+			"patterns": [
+				{ "include": "#variables" },
+				{ "include": "#separators" },
+				{ "include": "#types" }
+			]
+		},
+		"stmt-handler":{
+			"name": "keyword.control.webx",
+			"begin": "\\b(handler)\\b",
+			"end": "(?=\\-\\>)",
+			"patterns": [
+				{ "include": "#route-path-params" },
+				{ "include": "#variables" }
+			]
+		},
+		"keywords": {
+			"name": "keyword.control.webx",
+			"patterns": [
+				{ "include": "#stmt-location" },
+				{ "include": "#stmt-global" },
+				{ "include": "#stmt-model" },
+				{ "include": "#stmt-handler" }
+			]
 		},
 		"variables": {
-			"patterns": [{
-				"name": "variable.name.webx",
-				"match": "\\[a-z]+[a-zA-Z0-9]*"
-			}]
+			"name": "variable.webx",
+			"match": "\\b[a-z]+[a-zA-Z0-9]*\\b"
+		},
+		"parameters": {
+			"name": "variable.parameter.webx",
+			"match": "\\b[a-z]+[a-zA-Z0-9]*\\b"
 		},
 		"types":{
-			"patterns": [{
-				"name": "support.type.webx",
-				"match": "\\[A-Z]+[a-zA-Z0-9]*"
-			}]
-		},
-		"formats":{
-			"patterns": [{
-				"name": "support.function.webx",
-				"match": "\\b(json|xml|html|text|csv|yaml|md|pdf|png|jpg|jpeg|gif|svg|bmp|tiff|mp3|mp4|wav|ogg|flac|avi|mov|wmv|mpeg|webm|zip|tar|gz|7z|rar|doc|docx|xls|xlsx|ppt|pptx|odt|ods|odp|pages|numbers|key)\\b"
-			}]
-		},
-		"jsx":{
-			"patterns": [{
-				"name": "markup",
-				"begin": "<",
-				"end": ">"
-			}]
+            "name": "entity.name.type",
+			"match": "\\b[A-Z]+[a-zA-Z0-9]*\\b"
 		},
 		"operators": {
-			"patterns": [{
-				"name": "keyword.operator.webx",
-				"match": "\\b(-->|->|=>|\\+|\\-|\\*|\\/|\\%|\\=|\\!|\\<|\\>|\\&|\\|)\\b"
-			}]
+			"name": "keyword.operator.webx",
+			"match": "(\\->|\\=\\>|\\+|\\-|\\*|\\/|\\%|\\=|\\!|\\<|\\>|\\&|\\|)"
 		},
 		"separators":{
-			"patterns": [{
-				"name": "punctuation.separator.webx",
-				"match": "\\b(\\.|\\,|\\;|\\:)\\b"
-			}]
+			"name": "punctuation.webx",
+			"match": "(\\.|\\,|\\;|\\:)"
 		}
 	},
 	"scopeName": "source.webx"
