@@ -129,7 +129,7 @@
 		},
 		"parameters": {
 			"name": "variable.parameter.webx",
-			"match": "\\b[a-z]+[a-zA-Z0-9]*\\b"
+			"match": "[a-z\\_]+[a-zA-Z0-9\\_]*"
 		},
 		"types":{
             "name": "entity.name.type",
