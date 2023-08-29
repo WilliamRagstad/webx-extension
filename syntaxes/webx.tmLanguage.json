@@ -72,8 +72,13 @@
 			]
 		},
 		"stmt-global":{
-			"name": "keyword.control.webx",
-			"match": "\\b(global)\\b"
+			"name": "meta.global.webx",
+			"begin": "\\b(global)\\s*\\{",
+			"end": "\\}",
+			"beginCaptures": {
+				"1": { "name": "keyword.control.global.webx" }
+			},
+			"patterns": [{ "include": "source.ts" }]
 		},
 		"stmt-model":{
 			"name": "keyword.control.webx",
