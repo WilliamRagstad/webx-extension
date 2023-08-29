@@ -90,7 +90,22 @@
 				{ "include": "#types" }
 			]
 		},
-		"stmt-handler":{
+		"stmt-handler-ts":{
+			"name": "keyword.control.webx",
+			"begin": "\\b(handler)\\s+(\\w+)(\\([^\\)]*\\))\\s*\\{",
+			"end": "\\}",
+			"beginCaptures": {
+				"1": { "name": "keyword.control.handler.webx" },
+				"2": { "name": "entity.name.function.webx" },
+				"3": {
+					"name": "variable.parameter.webx",
+					"patterns": [
+						{ "include": "#route-path-params" }
+					]
+				}
+			},
+			"patterns": [{ "include": "source.ts" }]
+		},
 			"name": "keyword.control.webx",
 			"begin": "\\b(handler)\\b",
 			"end": "(?=\\-\\>)",
@@ -105,7 +120,7 @@
 				{ "include": "#stmt-location" },
 				{ "include": "#stmt-global" },
 				{ "include": "#stmt-model" },
-				{ "include": "#stmt-handler" }
+				{ "include": "#stmt-handler-ts" },
 			]
 		},
 		"variables": {
