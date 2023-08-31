@@ -59,12 +59,14 @@ def apply_macros(obj: dict, macros: dict) -> dict:
     # 2. Create a new macro environment with the merged macros
     # 4. Recursively apply macros to the fields of the current object
     # 5. Return the updated object
-    new_macros = macros.copy()
+    local_macros = macros.copy()
     if "macros" in obj:
-        new_macros.update(apply_macros(obj["macros"], macros))
+        # local_macros.update(apply_macros(obj["macros"], macros))
+        for macro in obj["macros"]:
+            local_macros[macro] = replace_all_macros_in_template(obj["macros"][macro], local_macros)
         del obj["macros"]
     for key in obj:
-        obj[key] = handle_field(obj[key], new_macros)
+        obj[key] = handle_field(obj[key], local_macros)
     return obj
 
 def main():
