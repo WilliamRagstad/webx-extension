@@ -3,6 +3,19 @@
   "displayName": "WebX",
   "description": "WebX language support and syntax highlighting",
   "version": "0.0.1",
+  "bugs": {
+    "url": "https://github.com/webx-net/webx-extension/issues"
+  },
+  "author": {
+    "name": "WebX Organization",
+    "url": "https://web-x.net/"
+  },
+  "repository": {
+    "type": "git",
+    "directory": "webx-extension",
+    "url": "https://github.com/webx-net/webx-extension"
+  },
+  "icon": "assets/icon.png",
   "engines": {
     "vscode": "^1.81.0"
   },
