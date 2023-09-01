@@ -1,5 +1,6 @@
 {
   "name": "webx",
+  "publisher": "webx",
   "displayName": "WebX",
   "description": "WebX language support and syntax highlighting",
   "version": "0.0.1",
