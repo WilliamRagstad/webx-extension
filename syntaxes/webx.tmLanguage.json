@@ -110,7 +110,7 @@
             "match": "(\\w+\\((((\\s*(\\w+)\\s*)(\\:)(\\s*(\\w+)\\s*))(\\s*\\,((\\s*(\\w+)\\s*)(\\:)(\\s*(\\w+)\\s*)))*)?\\))",
             "captures": {
                 "1": {
-                    "name": "entity.name.function.webx"
+                    "name": "support.class"
                 },
                 "2": {
                     "name": "meta.route.handler-params.webx",
