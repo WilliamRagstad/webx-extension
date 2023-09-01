@@ -3,6 +3,8 @@
 	"name": "WebX",
 	"patterns": [
 		{ "include": "#comments" },
+		{ "include": "#routes-ts-body" },
+		{ "include": "#routes-tsx-body" },
 		{ "include": "#route-handler-only" },
 		{ "include": "#keywords" },
 		{ "include": "#types" },
@@ -136,7 +138,7 @@
 			]
 		},
 		"route-handler-only": {
-			"name": "meta.route-handler.webx",
+			"name": "meta.route.webx",
 			"match": "{{HTTP_METHOD}}\\s+{{URL_PATH}}\\s+{{FUNCTION_CALL_TYPED_PARAMS}}?\\s*(\\-\\>)\\s*{{HANDLER_CALL_LIST}}",
 			"captures": {
 				"1": { "name": "entity.name.function.route.webx" },
@@ -159,6 +161,74 @@
 					]
 				}
 			}
+		},
+		"routes-ts-body": {
+			"name": "meta.route.webx",
+			"begin": "{{HTTP_METHOD}}\\s+{{URL_PATH}}\\s+{{FUNCTION_CALL_TYPED_PARAMS}}?\\s*((\\-\\>)\\s*{{HANDLER_CALL_LIST}})?\\s*\\{",
+			"end": "\\}\\s*((\\-\\>)\\s*{{HANDLER_CALL_LIST}})?",
+			"beginCaptures": {
+				"1": { "name": "entity.name.function.route.webx" },
+				"3": {
+					"name": "meta.route.path.webx",
+					"patterns": [{ "include": "#route-paths" }]
+				},
+				"12": {
+					"name": "meta.route.body-handler.webx",
+					"patterns": [
+						{ "include": "#request-body-format" }
+					]
+				},
+				"28": { "name": "keyword.operator.webx" },
+				"29": {
+					"name": "meta.route.handler-list.webx",
+					"patterns": [
+						{ "include": "#handler-call" },
+						{ "include": "#separators" }
+					]
+				}
+			},
+			"endCaptures": {
+				"2": { "name": "keyword.operator.webx" },
+				"3": {
+					"name": "meta.route.handler-list.webx",
+					"patterns": [
+						{ "include": "#handler-call" },
+						{ "include": "#separators" }
+					]
+				}
+			},
+			"patterns": [
+				{ "include": "source.ts" }
+			]
+		},
+		"routes-tsx-body": {
+			"name": "meta.route.webx",
+			"begin": "{{HTTP_METHOD}}\\s+{{URL_PATH}}\\s+{{FUNCTION_CALL_TYPED_PARAMS}}?\\s*((\\-\\>)\\s*{{HANDLER_CALL_LIST}})?\\s*\\(",
+			"end": "\\)",
+			"beginCaptures": {
+				"1": { "name": "entity.name.function.route.webx" },
+				"3": {
+					"name": "meta.route.path.webx",
+					"patterns": [{ "include": "#route-paths" }]
+				},
+				"12": {
+					"name": "meta.route.body-handler.webx",
+					"patterns": [
+						{ "include": "#request-body-format" }
+					]
+				},
+				"28": { "name": "keyword.operator.webx" },
+				"29": {
+					"name": "meta.route.handler-list.webx",
+					"patterns": [
+						{ "include": "#handler-call" },
+						{ "include": "#separators" }
+					]
+				}
+			},
+			"patterns": [
+				{ "include": "source.tsx" }
+			]
 		},
 
 		"stmt-location": {
