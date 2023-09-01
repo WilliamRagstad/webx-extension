@@ -6,7 +6,11 @@
 		{ "include": "#routes-ts-body" },
 		{ "include": "#routes-tsx-body" },
 		{ "include": "#route-handler-only" },
-		{ "include": "#keywords" },
+		{ "include": "#stmt-location" },
+		{ "include": "#stmt-global" },
+		{ "include": "#stmt-model" },
+		{ "include": "#stmt-handler-ts" },
+		{ "include": "#stmt-handler-tsx" },
 		{ "include": "#types" },
 		{ "include": "#variables" },
 		{ "include": "#operators" },
@@ -311,16 +315,7 @@
 			},
 			"patterns": [{ "include": "source.tsx" }]
 		},
-		"keywords": {
-			"name": "keyword.control.webx",
-			"patterns": [
-				{ "include": "#stmt-location" },
-				{ "include": "#stmt-global" },
-				{ "include": "#stmt-model" },
-				{ "include": "#stmt-handler-ts" },
-				{ "include": "#stmt-handler-tsx" }
-			]
-		},
+		
 		"variables": {
 			"name": "variable.webx",
 			"match": "{{IDENT}}"
