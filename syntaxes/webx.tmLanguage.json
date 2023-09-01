@@ -338,14 +338,21 @@
             ]
         },
         "stmt-location": {
-            "name": "keyword.control.webx",
-            "begin": "\\b(location)\\b",
-            "end": "(?=\\{)",
-            "patterns": [
-                {
-                    "include": "#route-paths"
+            "name": "meta.location.webx",
+            "match": "\\b(location)\\b\\s+(([\\w+\\/]|(\\(((\\s*(\\w+)\\s*)(\\:)(\\s*(\\w+)\\s*))\\)))+)",
+            "captures": {
+                "1": {
+                    "name": "keyword.control.location.webx"
+                },
+                "2": {
+                    "name": "meta.route.path.webx",
+                    "patterns": [
+                        {
+                            "include": "#route-paths"
+                        }
+                    ]
                 }
-            ]
+            }
         },
         "stmt-global": {
             "name": "meta.global.webx",
