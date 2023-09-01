@@ -25,7 +25,7 @@ The following snippets are available for WebX files:
 - `get`/`post`/`etc.` - Route declaration
 
 ## Release Notes
-### 1.0.0
+### 0.0.1
 Initial release of the WebX syntax highlighting and snippets extension for Visual Studio Code. This extension is still in development and may contain bugs. Please report any issues to the [GitHub repository](https://github.com/webx-net/webx-extension/issues).
 
 **Enjoy!**
