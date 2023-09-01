@@ -351,18 +351,47 @@
             ]
         },
         "stmt-model": {
-            "name": "keyword.control.webx",
-            "begin": "\\b(model)\\b",
+            "name": "meta.model.webx",
+            "begin": "\\b(model)\\b\\s+(\\b[\\w\\_]+\\b)\\s*\\{",
             "end": "(?=\\})",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.control.model.webx"
+                },
+                "2": {
+                    "name": "meta.model.name.webx",
+                    "patterns": [
+                        {
+                            "include": "#types"
+                        }
+                    ]
+                }
+            },
             "patterns": [
                 {
-                    "include": "#variables"
-                },
-                {
-                    "include": "#separators"
-                },
-                {
-                    "include": "#types"
+                    "name": "meta.model.body.webx",
+                    "match": "((\\s*(\\w+)\\s*)(\\:)(\\s*(\\w+)\\s*))",
+                    "captures": {
+                        "2": {
+                            "name": "meta.model.property.webx",
+                            "patterns": [
+                                {
+                                    "include": "#variables"
+                                }
+                            ]
+                        },
+                        "4": {
+                            "name": "keyword.operator.webx"
+                        },
+                        "5": {
+                            "name": "meta.model.type.webx",
+                            "patterns": [
+                                {
+                                    "include": "#types"
+                                }
+                            ]
+                        }
+                    }
                 }
             ]
         },
