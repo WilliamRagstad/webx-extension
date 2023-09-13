@@ -24,6 +24,10 @@ The following snippets are available for WebX files:
 - `location` - Location scopes
 - `get`/`post`/`etc.` - Route declaration
 
+## Roadmap
+
+Move to a **Language server protocol** (LSP) implementation for robustness and better semantic support such as code completion, hover-info, and advanced syntax highlighting.
+
 ## Release Notes
 ### 0.0.1
 Initial release of the WebX syntax highlighting and snippets extension for Visual Studio Code. This extension is still in development and may contain bugs. Please report any issues to the [GitHub repository](https://github.com/webx-net/webx-extension/issues).
