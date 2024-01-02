@@ -1,0 +1,107 @@
+
+get / (<html>
+    <body>
+        <h1>Hello from WebX!</h1>
+        <p>
+            This is an example index page.
+        </p>
+        <a href="/about">About</a>
+        <a href="/todos">Todos</a>
+    </body>
+</html>)
+
+post /about/(id: Num) form(text: String) -> renderAllTodos(a, b): c {
+    const a = [5];
+    if true { console.log(text); }
+} -> renderAllTodos(a, b, c)
+
+post list/all/(data : Int)/data json(a: T, b : U) -> renderAllTodos(todos, test): out, hc() : u
+
+// This is an example WebX todo app project.
+global {
+    // Global in-memory database of todos for this example.
+    const todos = [7, 3, 10];
+    function test() { return todos[2]; }
+    let a = test();
+    console.log(a);
+}
+
+model Todo {
+    title: String,
+    completed: Boolean,
+    createdAt: Date,
+}
+
+handler renderTodo(todo: Todo) (<li>
+    <h4>
+        <input type="checkbox" checked={todo.completed} />
+        {todo.title} - {getTimeDiff(todo.createdAt)}
+    </h4>
+</li>)
+
+handler renderAllTodos(todos: Todo) (
+    <ul class="test">{todos.map(renderTodo)}</ul>
+)
+
+handler authenticate(user_id: Number) {
+    if (user_id === 1) {
+        return Guard::Allow;
+    } else {
+        return Guard::Deny;
+    }
+}
+
+get /about (<div>
+    <h1>About</h1>
+    <p>This is an example WebX project.</p>
+    <a href="/">Home</a>
+</div>)
+
+location todos {
+    // The main todo app page.
+    get / -> static( index, a )
+    get / -> static("index.html")
+    
+    get /list (<ul id="todo-list">
+        <li>
+            <h4>
+                <input type="checkbox" checked="true" />
+                Example Item - 1 minute ago
+            </h4>
+        </li>
+        <li>
+            <h4>
+                <input type="checkbox" />
+                Example Item - 2 minutes ago
+            </h4>
+        </li>
+    </ul>)
+
+    // Display the global list of todos as HTML.
+    get list/all/(data : Int)/data -> renderAllTodos(todos)
+
+    // Add a new todo to the list with the given title.
+    // { title: "My Todo" }
+    // returns HTML
+    post add/ json(title: String) {
+        let newTodo = {
+            title,
+            completed: false,
+            createdAt: new Date()
+        };
+        todos.push(newTodo);
+    } -> renderTodo(newTodo)
+
+    // Toggle the completed status of the todo with the given id.
+    // { id: 0 }
+    // returns HTML
+    post /toggle json(id: Int) {
+        const todo = todos.find(t => t.id === id);
+        if (todo) {
+            todo.completed = !todo.completed;
+            return renderTodo(todo);
+        } else {
+            return error("Todo not found.");
+        }
+    } -> renderTodo(todo)
+}
